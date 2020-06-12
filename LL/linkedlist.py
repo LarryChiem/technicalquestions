@@ -1,7 +1,7 @@
 class Node: 
-    def __init__(self, dataval=None):
-        self.dataval = dataval
-        self.nextval = None
+    def __init__(self, val=None):
+        self.val = val
+        self.next = None
 
 class SLinkedList:
     def __init__(self):
@@ -10,12 +10,12 @@ class SLinkedList:
     def listprint(self):
         printval = self.headval
         while printval is not None:
-            print(printval.dataval)
-            printval = printval.nextval
+            print(printval.val)
+            printval = printval.next
     
     def AtBeginning(self, newdata):
         NewNode = Node(newdata)
-        NewNode.nextval = self.headval
+        NewNode.next = self.headval
         self.headval = NewNode
 
     def AtEnd(self, newdata):
@@ -24,9 +24,9 @@ class SLinkedList:
             self.headval = NewNode
             return
         last = self.headval
-        while(last.nextval):
-            last = last.nextval
-        last.nextval = NewNode
+        while(last.next):
+            last = last.next
+        last.next = NewNode
 
     def RemoveNode(self, RemoveKey):
 
@@ -36,32 +36,38 @@ class SLinkedList:
             return
 
         # If RemoveKey is first
-        if (HeadVal.dataval == RemoveKey):
-            self.headval = HeadVal.nextval
+        if (HeadVal.val == RemoveKey):
+            self.headval = HeadVal.next
             HeadVal = None
             return
-        while (HeadVal.dataval != RemoveKey):
+        while (HeadVal.val != RemoveKey):
             prev = HeadVal
-            HeadVal = prev.nextval
-        if (HeadVal.dataval == RemoveKey):
-            prev.nextval = HeadVal.nextval
+            HeadVal = prev.next
+        if (HeadVal.val == RemoveKey):
+            prev.next = HeadVal.next
             HeadVal = None
             return
 
-        
+    def _ReverseList(self, head):
+        if head is None or head.next is None:
+            return head
+        p = self.ReverseList(head.next)
+        head.next.next = head
+        head.next = None
+        print(p.headval)
+        return p
+
 list1 = SLinkedList()
 list1.headval = Node("Mon")
 e2 = Node("Tue")
 e3 = Node("Wed")
 # Link first Node to second Node
-list1.headval.nextval = e2
+list1.headval.next = e2
 
-e2.nextval = e3
+e2.next = e3
 
 list1.AtBeginning("Sun")
 list1.AtEnd("Thu")
 
 list1.RemoveNode("Thu")
 list1.listprint()
-
-

@@ -14,7 +14,7 @@ import java.util.List;
 //        Hint: Directly test the constraints. Use an array to encode sets.
 public class partialSudoku {
     // Check if a partially filled matrix has any conflicts.
-    public static boolean isValidSudoku(List<List<Integer> partialAssignment){
+    public static boolean isValidSudoku(List<List<Integer>> partialAssignment){
 // Check row constraints.
         for (int i = 0; i < partialAssignment.size(); ++i) {
             if (hasDuplicate(partialAssignment , i, i + 1, 0, partialAssignment.size())){
@@ -23,7 +23,7 @@ public class partialSudoku {
         }
 // Check column constraints.
         for (int j = 0; j < partialAssignment.size(); ++j) {
-            if (hasDuplicate(partialAssignment , 0, partialAssignment.size(), j, j + 1) {
+            if (hasDuplicate(partialAssignment , 0, partialAssignment.size(), j, j + 1)) {
                 return false;
             }
         }
@@ -39,12 +39,14 @@ public class partialSudoku {
             }
         }
 
+        return true;
+
         // Return true if subarray partialAssignment[startRow : endRow - 1][startCol :
 // endCol - 1] contains any duplicates in {1, 2, ...»
 // partialAssignment.size()}; otherwise return false.
     }
 
-    private static boolean hasDuplicate (List<List<Integer> partialAssignment, int startRow, int endRow, int startCol, int endCol ) {
+    private static boolean hasDuplicate (List<List<Integer>> partialAssignment, int startRow, int endRow, int startCol, int endCol ) {
         List <Boolean> isPresent = new ArrayList<>(Collections.nCopies(partialAssignment.size() + 1, false));
         for (int i = startRow; i < endRow; ++i) {
             for (int j = startCol; j < endCol; ++j) {
@@ -55,6 +57,7 @@ public class partialSudoku {
             }
         }
         return false;
-        return true ;
     }
 }
+//Time complexity is O(n^2). The memory usage is dominated by the bit array used to check the
+//constraints, so the space complexity is 0(n).

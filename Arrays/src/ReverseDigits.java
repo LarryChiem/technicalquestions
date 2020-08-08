@@ -14,3 +14,4 @@ public class ReverseDigits {
         return num < 0 ? -res : res;
     }
 }
+//    The time complexity is 0(n), where n is the number of digits in k.

@@ -8,23 +8,20 @@
 //        Hint: If you know the length of the list, can you find the /cth last node using two iterators?
 
 public class removeKthLast {
-    public static ListNode<Integer> removeKthLast(ListNode <Integer> L, int k) {
-        ListNode<Integer> dummyHead = new ListNode<>(0, L);
-        ListNode<Integer> first = dummyHead.next;
-
-        while (k-- > 0) {
-            first = first.next;
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode fast, slow, dummy = new ListNode(0);
+        fast = dummy;
+        slow = dummy;
+        dummy.next = head;
+        for (int i = 0; i < n+1; i++) {
+            fast = fast.next;
         }
-
-        ListNode<Integer> second = dummyHead;
-        while (first != null) {
-            second = second.next;
-            first = first.next;
+        while (fast != null) {
+            fast = fast.next;
+            slow = slow.next;
         }
-
-        second.next = second.next.next;
-        return dummyHead.next;
-
+        slow.next = slow.next.next;
+        return dummy.next;
 
     }
 }

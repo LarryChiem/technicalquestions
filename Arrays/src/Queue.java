@@ -15,40 +15,52 @@ import java.util.NoSuchElementException;
 //        of elements.
 //        Hint: Track the head and tail. How can you differentiate a full queue from an empty one?
 public class Queue {
-    private int head = 0, tail = 0, numQueueElements = 0;
-    private static final int SCALE_FACTOR = 2;
-    private Integer[] entries;
+    int head, tail = -1, numQueueElements = 0;
+    final int[] entries;
 
-    public Queue(int capacity) { entries = new Integer[capacity]; }
-
-    public void Enqueue(Integer x) {
-        if (numQueueElements == entries.length) { //NEED TO RESIZE
-            //Make the Queue elements appear consecutively
-            Collections.rotate(Arrays.asList(entries), -head);
-            // Resets head and tail
-            head = 0;
-            tail = numQueueElements;
-            entries = Arrays.copyOf(entries, numQueueElements * SCALE_FACTOR);
-        }
-
-        entries[tail] = x;
-        tail = (tail + 1) % entries.length;
-        ++numQueueElements;
+    /** Initialize your data structure here. Set the size of the queue to be k. */
+    public MyCircularQueue(int k) {
+        entries = new int[k];
     }
-//    The time complexity of dequeue is 0(1), and the amortized time complexity of en¬
-//    queue is 0(1).
-    public Integer dequeue() {
-        if (numQueueElements != 0) {
-            --numQueueElements;
-            Integer ret = entries[head];
+
+    /** Insert an element into the circular queue. Return true if the operation is successful. */
+    public boolean enQueue(int value) {
+        if(!isFull()) {
+            tail = (tail + 1) % entries.length;
+            entries[tail] = value;
+            numQueueElements++;
+            return true;
+        } else return false;
+    }
+
+    /** Delete an element from the circular queue. Return true if the operation is successful. */
+    public boolean deQueue() {
+        if (!isEmpty()) {
             head = (head + 1) % entries.length;
-            return ret;
+            --numQueueElements;
+            return true;
         }
-        throw new NoSuchElementException("Dequeue called on an empty queue");
+        return false;
     }
 
-    public int Size() {
-        return numQueueElements;
+    /** Get the front item from the queue. */
+    public int Front() {
+        return isEmpty() ? -1 : entries[head];
+    }
+
+    /** Get the last item from the queue. */
+    public int Rear() {
+        return isEmpty() ? -1 : entries[tail];
+    }
+
+    /** Checks whether the circular queue is empty or not. */
+    public boolean isEmpty() {
+        return numQueueElements == 0;
+    }
+
+    /** Checks whether the circular queue is full or not. */
+    public boolean isFull() {
+        return numQueueElements == entries.length;
     }
 }
 //Solution: A brute-force approach is to use an array, with the head always at index

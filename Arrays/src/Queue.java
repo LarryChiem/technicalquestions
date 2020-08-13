@@ -19,12 +19,12 @@ public class Queue {
     final int[] entries;
 
     /** Initialize your data structure here. Set the size of the queue to be k. */
-    public MyCircularQueue(int k) {
+    public Queue(int k) {
         entries = new int[k];
     }
 
     /** Insert an element into the circular queue. Return true if the operation is successful. */
-    public boolean enQueue(int value) {
+    public boolean Enqueue(int value) {
         if(!isFull()) {
             tail = (tail + 1) % entries.length;
             entries[tail] = value;
@@ -34,7 +34,7 @@ public class Queue {
     }
 
     /** Delete an element from the circular queue. Return true if the operation is successful. */
-    public boolean deQueue() {
+    public boolean Dequeue() {
         if (!isEmpty()) {
             head = (head + 1) % entries.length;
             --numQueueElements;

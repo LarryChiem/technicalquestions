@@ -12,7 +12,6 @@
 //        The producer is to either go to sleep or discard data if the buffer is full. The next time the consumer removes an item from the buffer, it notifies the producer, who starts to fill the buffer again. In the same way, the consumer can go to sleep if it finds the buffer to be empty. The next time the producer puts data into the buffer, it wakes up the sleeping consumer.
 //        An inadequate solution could result in a deadlock where both processes are waiting to be awakened.
 
-import java.sql.SQLOutput;
 import java.util.LinkedList;
 
 // - A LinkedList list – to store list of jobs in queue.
@@ -36,15 +35,13 @@ public class ThreadExample {
         });
 
         //Create consumer thread
-        Thread t2 = new Thread(new Runnable() {
-            @Override
-            public void run() {
+        Thread t2 = new Thread(()->
+        {
                 try {
                     pc.consume();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }
         });
 
         // Start both threads

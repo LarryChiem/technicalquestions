@@ -61,6 +61,23 @@ public class ArraysAndStrings {
         return true;
     }
 
+    // Return the size of the smallest subarray sum that is greater or equal to the target sum.
+    public int smallestSubarray(int targetSum, int[] arr) {
+        int minWindowSize = Integer.MAX_VALUE;
+        int currentWindowSum = 0;
+        int windowStart = 0;
+        for (int windowEnd = 0; windowEnd < arr.length; windowEnd++) {
+            currentWindowSum += arr[windowEnd];
+
+            while(currentWindowSum >= targetSum) {
+                minWindowSize = Math.min(minWindowSize, windowEnd - windowStart + 1);
+                currentWindowSum -= arr[windowStart];
+                windowStart++;
+            }
+        }
+        return minWindowSize;
+    }
+
     public static void main(String[] args) {
         ArraysAndStrings arraysAndStrings = new ArraysAndStrings("abc");
         boolean result = arraysAndStrings.isUniqueHashSet(arraysAndStrings.getStr());

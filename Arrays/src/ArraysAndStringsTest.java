@@ -34,4 +34,12 @@ class ArraysAndStringsTest {
         boolean actual = arraysAndStrings.isUniqueNoDataStructures("cdetyabc");
         assertEquals(false, actual);
     }
+
+
+    @org.junit.jupiter.api.Test
+    void smallestSubarrayReturns1() {
+        ArraysAndStrings arraysAndStrings = new ArraysAndStrings();
+        int actual = arraysAndStrings.smallestSubarray(8, new int[]{4,2,2,7,8,1,2,8,10});
+        assertEquals(1, actual);
+    }
 }

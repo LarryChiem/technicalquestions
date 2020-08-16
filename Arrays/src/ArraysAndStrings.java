@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashSet;
 
 public class ArraysAndStrings {
@@ -7,13 +8,18 @@ public class ArraysAndStrings {
         this.str = str;
     }
 
+    public ArraysAndStrings() {
+
+    }
+
     public String getStr() {
         return str;
     }
 
     /* 1.1 isUnique: Implement an algorithm to determine if a string has all unique characters. What if you cannot use
     additional data structures?*/
-    public boolean isUnique(String str) {
+    // This HashSet method takes O(1) time and O(n) space
+    public boolean isUniqueHashSet(String str) {
         HashSet<Character> characterHashSet = new HashSet<Character>();
         char[] charArray = str.toCharArray();
         for (int i = 0; i<str.length(); i++) {
@@ -23,9 +29,26 @@ public class ArraysAndStrings {
         return true;
     }
 
+    public boolean isUniqueNoDataStructures(String str) {
+        //By sorting first (O(n log(n)), we have reduced the time to O(n log(n)) and O(n) space
+        char[] charArray = str.toCharArray();
+        Arrays.sort(charArray);
+        str = new String(charArray);
+
+        //Without sorting it, this will take O(n^2) time and O(1) space.
+        for (int i = 0; i < str.length()-1; i++) {
+            for (int j = i+1; j < str.length(); j++) {
+                if(str.charAt(i) == str.charAt(j)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         ArraysAndStrings arraysAndStrings = new ArraysAndStrings("abc");
-        boolean result = arraysAndStrings.isUnique(arraysAndStrings.getStr());
+        boolean result = arraysAndStrings.isUniqueHashSet(arraysAndStrings.getStr());
         System.out.println(result);
     }
 }

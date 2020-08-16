@@ -1,5 +1,5 @@
 import java.util.HashMap;
-public class UniqueNumberOfOccurences {
+public class UniqueNumberOfOccurrences {
     public boolean uniqueOccurrences(int[] arr) {
         HashMap<Integer, Integer> intCounter = new HashMap<>();
         //We know that as long as the value of the

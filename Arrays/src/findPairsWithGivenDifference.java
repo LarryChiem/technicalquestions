@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -32,9 +31,9 @@ public class findPairsWithGivenDifference {
     }
 
     public static void main(String[] args) {
-        int[][] answers = findPairsWithGivenDifference(new int[]{0, -1, -2, 2, 1}, 1);
-        for(int[] pair : answers) {
-            System.out.println(Arrays.toString(pair));
-        }
+//        int[][] answers = new findPairsWithGivenDifference(new int[]{0, -1, -2, 2, 1}, 1);
+//        for(int[] pair : answers) {
+//            System.out.println(Arrays.toString(pair));
+//        }
     }
 }

@@ -17,13 +17,6 @@ public class SortAlmostSorted {
             System.out.println(smallest);
         }
 
-        // For every new element, add it to minHeap and extract the smallest one
-        while (sequence.hasNext()) {
-            minHeap.add(sequence.next());
-            Integer smallest = minHeap.remove();
-            System.out.println(smallest);
-        }
-
         // Sequence is exhausted, iteratively extract the remaining elements
         while (!minHeap.isEmpty()) {
             Integer smallest = minHeap.remove();

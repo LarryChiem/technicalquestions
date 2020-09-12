@@ -10,6 +10,8 @@ Hint: Find a simple characterization of strings that can be permuted to form a p
  */
 
 public class TestForPalindromicPermutations {
+    /* The time complexity is O(n),where n is the length of the string. The space complexity
+is(O(c)), where c is the number of distinct characters appearing in the string. */
     public static boolean canFormPalindrome(String s) {
        Map<Character, Integer> charFrequencies = new HashMap<>();
        // Compute the frequency of each char in s

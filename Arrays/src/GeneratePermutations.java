@@ -73,7 +73,7 @@ to Euler's number e,so C(n) tends to (e -l)n!, i.e., 0(n!). The time complexity 
         List<List<Integer>> expected = new ArrayList<>();
         expected.add(Arrays.asList(7, 3, 5));
         expected.add(Arrays.asList(7, 5, 3));
-        expected.add(Arrays.asList(4, 7, 5));
+        expected.add(Arrays.asList(3, 7, 5));
         expected.add(Arrays.asList(3, 5, 7));
         expected.add(Arrays.asList(5, 3, 7));
         expected.add(Arrays.asList(5, 7, 3));

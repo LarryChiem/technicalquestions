@@ -20,6 +20,26 @@ Hint: How many possible values are there for the first element?*/
         directedPermutations(0 , A, result);
         return result;
     }
+
+    /* A better approach is to recognize that once a value has been chosen for an entry,
+we do not want to repeat it. Specifically, every permutation of A begins with one of
+A[0], A[l],... ,A[n -1], The idea is to generate all permutations that begin with A[0],
+then all permutations that begin with A[1], and so on. Computing all permutations
+beginning with A[0] entails computing allpermutations of A[1 : n—1],which suggests
+the use of recursion. To compute all permutations beginning with A[l] we swap A[0]
+with A[l] and compute all permutations of the updated A[1: n -1]. We then restore
+the original state before embarking on computing all permutations beginning with
+A[ 2], and so on
+For example, for the array (7,3,5), we would first generate all permutationsstart¬
+ing with 7. This entails generating all permutations of (3,5), which we do by finding
+all permutations of (3,5) beginning with 3. Since (5) is an array of length 1, it has
+a single permutation. This implies (3,5) has a single permutation beginning with 3.
+Next we look for permutations of (3,5) beginning with 5. To do this, we swap 3 and
+5, and find, as before, there is a single permutation of (3,5) beginning with 5, namely,
+(5,3). Hence, there are two permutations of A beginning with 7, namely (7,3,5) and
+(7,5,3). We swap 7 with 3 to find all permutations beginning with 3, namely (3, 7, 5)
+and (3,5,7). The last two permutations we add are (5,3,7) and (5,7,3). In all there
+are six permutations.*/
     private static void directedPermutations(int i, List<Integer> A,
                                              List<List<Integer>> result) {
         if (i == A.size() - 1) {

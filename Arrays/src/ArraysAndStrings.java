@@ -65,6 +65,21 @@ public class ArraysAndStrings {
         return true;
     }
 
+    //for isUnique, we can reduce our space usage by a factor of 8 by using a bit vector. We will assume,
+    // in the below code, that the string only uses the lowercase letters a through z. This will allow us to use just a
+    // a single int.
+    boolean isUniqueCharsReduced(String str) {
+        int checker = 0;
+        for (int i = 0; i < str.length(); i++) {
+            int val = str.charAt(i) - 'a';
+            if ((checker & (1 << val)) > 0) {
+                return false;
+            }
+            checker |= (1 << val);
+        }
+        return true;
+    }
+
     // Return the size of the smallest subarray sum that is greater or equal to the target sum.
     public int smallestSubarray(int targetSum, int[] arr) {
         int minWindowSize = Integer.MAX_VALUE;

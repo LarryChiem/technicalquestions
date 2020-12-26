@@ -35,6 +35,18 @@ class ArraysAndStringsTest {
         assertEquals(false, actual);
     }
 
+    @org.junit.jupiter.api.Test
+    void isUniqueCharsReducedReturnsTrue() {
+        ArraysAndStrings arraysAndStrings = new ArraysAndStrings();
+        boolean actual = arraysAndStrings.isUniqueCharsReduced("cdetyab");
+        assertEquals(true, actual);
+    }
+    @org.junit.jupiter.api.Test
+    void isUniqueCharsReducedReturnsFalse() {
+        ArraysAndStrings arraysAndStrings = new ArraysAndStrings();
+        boolean actual = arraysAndStrings.isUniqueCharsReduced("cdetyabc");
+        assertEquals(false, actual);
+    }
 
     @org.junit.jupiter.api.Test
     void smallestSubarrayReturns1() {

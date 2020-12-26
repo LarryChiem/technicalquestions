@@ -22,8 +22,12 @@ public class ArraysAndStrings {
     public boolean isUniqueHashSet(String str) {
         HashSet<Character> characterHashSet = new HashSet<Character>();
         char[] charArray = str.toCharArray();
-        for (int i = 0; i<str.length(); i++) {
+        /*for (int i = 0; i<str.length(); i++) {
             if(!characterHashSet.add(charArray[i]))
+                return false;
+        }*/
+        for (char c : charArray) {
+            if(!characterHashSet.add(c))
                 return false;
         }
         return true;
